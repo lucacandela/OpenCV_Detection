@@ -3,14 +3,20 @@ import numpy as np
 import os
 from time import time
 from windowcapture import WindowCapture
-from vision import findClickPositions
+from vision import Vision
 
 
 #change working directory to the folder that this script is in
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-
+'''
 wincap = WindowCapture('Roblox')
+# initialize Vision class
+vision_horror_vessel = Vision('horror_vessel.png')
+'''
+
+wincap = WindowCapture()
+vision_LCBG = Vision('LCBG.jpg')
 
 
 loop_time = time()
@@ -19,7 +25,9 @@ while(True):
     screenshot = wincap.get_screenshot()
 
     #cv.imshow("Computer Vision", screenshot)
-    findClickPositions('horror_vessel.png', screenshot, 0.21, 'rectangles')
+    #points = vision_horror_vessel.find(screenshot, 0.21, 'rectangles')
+
+    points = vision_LCBG.find(screenshot,0.7,'points')
 
     # debug the loop rate
     print('FPS {}'.format(1 / (time() - loop_time)))
